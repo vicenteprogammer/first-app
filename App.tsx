@@ -1,12 +1,33 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+//Para conseguirmos usar arquivos de img, sem que o ts responda, vamos ter que criar um arquivo declarativo com um modulo que declara que existe um tipo .png, pois por padrão o type script, não reconhece esse tipo.
+import imageBat from './assets/batman.png';
+import imageRob from './assets/robin.png';
 
 export default function App() {
+
+  let isClick = true
+
+  function click(){
+    isClick = !isClick
+    console.log(isClick)
+  }
+
   return (
+    
     //Diferente do html, aqui no react native colocamso os tevxtos, imagens e outros elemntos visuais para a nossa aplicação através de tags reservadas. Como está no código abaixo, mas é muito similar as tags html.
+    
     <View style={styles.container}>
-      <Text>Hello World</Text>
+      <Text style={styles.textStyle}>Batman Or Robin</Text>
       <StatusBar style="auto" />
+      {/*Trabalhando com imagens no react native: Uso da tag Image */}
+      <View>
+        <Image style={styleImage.image} source={isClick ? imageBat: imageRob}></Image>
+      </View>
+
+      <Button title='Change' onPress={click} />
+     
     </View>
   );
 }
@@ -22,4 +43,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  textStyle:{
+    color: 'black',
+    fontSize: 30,
+    marginBottom: 20
+  }
 });
+
+const styleImage = StyleSheet.create({
+  image:{
+    width: 180,
+    height: 150,
+    marginBottom: 30
+  }
+})
