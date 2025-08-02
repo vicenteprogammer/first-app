@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Button } from 'react-native';
 //Para conseguirmos usar arquivos de img, sem que o ts responda, vamos ter que criar um arquivo declarativo com um modulo que declara que existe um tipo .png, pois por padrão o type script, não reconhece esse tipo.
@@ -6,11 +6,11 @@ import imageBat from './assets/batman.png';
 import imageRob from './assets/robin.png';
 
 export default function App() {
-
-  let isClick = true
+  // Manipualndo states para trocar imagens, diferente do js padrão no React native preciasmos avisar ele para renderizar o outro elemento/estado e prara isso precisamos de Hooks, e um desses hooks que vamos usar é o useState.
+  const [isClick, setClick] = useState(true)
 
   function click(){
-    isClick = !isClick
+    setClick((prevClick)=> prevClick = ! isClick)
     console.log(isClick)
   }
 
